@@ -1,3 +1,9 @@
+Dependancy:  
+```
+https://github.com/EloiStree/2026_01_03_gdp_debug_input_stroke
+```
+
+Add to your project:  
 ```
 git submodule add https://github.com/EloiStree/2026_02_09_gdp_nes_16_tournament.git addons/2026_02_09_gdp_nes_16_tournament
 git submodule update --init --recursive
