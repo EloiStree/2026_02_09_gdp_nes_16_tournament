@@ -1,3 +1,9 @@
+Dependancy:  
+```
+https://github.com/EloiStree/2026_01_03_gdp_debug_input_stroke
+```
+
+Add to your project:  
 ```
 git submodule add https://github.com/EloiStree/2026_02_09_gdp_nes_16_tournament.git addons/2026_02_09_gdp_nes_16_tournament
 git submodule update --init --recursive
@@ -16,8 +22,3 @@ This Godot package would make that setup possible by redirecting NES controller 
 <img width="963" height="502" alt="image" src="https://github.com/user-attachments/assets/54aa715d-1b92-4014-8836-cd4ae4e3d4ac" />
 <img width="400" height="349" alt="image" src="https://github.com/user-attachments/assets/cec42a44-8401-4732-8dab-0a9a5985507a" />
 
-
-To use this code, you need to listen to devices with appearing order:  
-```
-https://github.com/EloiStree/2026_01_03_gdp_debug_input_stroke
-```
