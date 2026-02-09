@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dim1lq5spq403"]
+
+[ext_resource type="Script" uid="uid://d2iuxjr435316" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_parse_devices_main_joystick_to_button_id.gd" id="2_6pu3g"]
+[ext_resource type="PackedScene" uid="uid://dwdtasu4ghnjw" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_e2d_listen_to_devices_axis_and_buttons.tscn" id="2_7x45f"]
+[ext_resource type="Script" uid="uid://bccfp4a2ffnw7" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/input_filter_by_device_name.gd" id="2_bva8q"]
+[ext_resource type="PackedScene" uid="uid://skr8o2kjwqvb" path="res://addons/2026_02_09_gdp_nes_16_tournament/scene/element/node_nes_to_one_target_ipv4_udp.tscn" id="3_bva8q"]
+[ext_resource type="PackedScene" uid="uid://dr1pvl2t4qh3a" path="res://addons/2026_02_09_gdp_nes_16_tournament/scene/element/node_nes_to_four_target_ipv4_udp.tscn" id="4_6pu3g"]
+
+[node name="DemoNes16JoysticksToRelay" type="Node" unique_id=942504134]
+
+[node name="ListenToDevicesAxisAndButtons" parent="." unique_id=1922160281 instance=ExtResource("2_7x45f")]
+use_print_debug = true
+
+[node name="InputFilterByDevicesName" type="Node" parent="." unique_id=550507228 node_paths=PackedStringArray("devices_manager")]
+script = ExtResource("2_bva8q")
+devices_manager = NodePath("../ListenToDevicesAxisAndButtons")
+devices_name_to_filter = Array[String](["DragonRise Inc. Generic USB Joystick", "Super Famicom Controller"])
+metadata/_custom_type_script = "uid://bccfp4a2ffnw7"
+
+[node name="Nes16ParseDevicesMainJoystickToButtonId" type="Node" parent="." unique_id=1892984112]
+script = ExtResource("2_6pu3g")
+metadata/_custom_type_script = "uid://d2iuxjr435316"
+
+[node name="NodeNesToOneTargetIpv4Udp" parent="." unique_id=1337352220 instance=ExtResource("3_bva8q")]
+use_debug_print = true
+
+[node name="NodeNesToFourTargetIpv4Udp" parent="." unique_id=514972425 instance=ExtResource("4_6pu3g")]
+
+[connection signal="on_axis_changed" from="InputFilterByDevicesName" to="Nes16ParseDevicesMainJoystickToButtonId" method="push_in_axis"]
+[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]

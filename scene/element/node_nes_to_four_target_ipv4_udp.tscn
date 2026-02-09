@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dr1pvl2t4qh3a"]
+
+[ext_resource type="Script" uid="uid://bppaq6w1422t1" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_convert_devices_buttons_to_four_target_iid.gd" id="1_p3jfo"]
+[ext_resource type="Resource" uid="uid://dlcx2gixi2e6o" path="res://addons/2026_02_09_gdp_nes_16_tournament/resource/nes16_joystick_to_s2w.tres" id="2_ratnm"]
+[ext_resource type="Script" uid="uid://xvh1ii7efd5r" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_send_udp_target.gd" id="3_ratnm"]
+
+[node name="NodeNesToFourTargetIpv4Udp" type="Node" unique_id=514972425]
+script = ExtResource("1_p3jfo")
+nes16_joystick_buttons_to_s2w = ExtResource("2_ratnm")
+
+[node name="Nes16SendUdptargetOne" type="Node" parent="." unique_id=415688394]
+script = ExtResource("3_ratnm")
+list_targets_ipv4 = Array[String](["192.168.178.1:3615"])
+metadata/_custom_type_script = "uid://xvh1ii7efd5r"
+
+[node name="Nes16SendUdptargetTwo" type="Node" parent="." unique_id=253809356]
+script = ExtResource("3_ratnm")
+list_targets_ipv4 = Array[String](["192.168.178.2:3615"])
+metadata/_custom_type_script = "uid://xvh1ii7efd5r"
+
+[node name="Nes16SendUdptargetThree" type="Node" parent="." unique_id=840300055]
+script = ExtResource("3_ratnm")
+list_targets_ipv4 = Array[String](["192.168.178.3:3615"])
+metadata/_custom_type_script = "uid://xvh1ii7efd5r"
+
+[node name="Nes16SendUdptargetFour" type="Node" parent="." unique_id=965144444]
+script = ExtResource("3_ratnm")
+list_targets_ipv4 = Array[String](["192.168.178.4:3615"])
+metadata/_custom_type_script = "uid://xvh1ii7efd5r"
+
+[connection signal="on_index_value_target_four" from="." to="Nes16SendUdptargetOne" method="push_ii_to_targets"]
+[connection signal="on_index_value_target_one" from="." to="Nes16SendUdptargetTwo" method="push_ii_to_targets"]
+[connection signal="on_index_value_target_three" from="." to="Nes16SendUdptargetThree" method="push_ii_to_targets"]
+[connection signal="on_index_value_target_two" from="." to="Nes16SendUdptargetFour" method="push_ii_to_targets"]

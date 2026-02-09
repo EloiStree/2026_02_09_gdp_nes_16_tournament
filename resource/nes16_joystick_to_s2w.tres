@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Nes16JoystickButtonsToS2W" format=3 uid="uid://dlcx2gixi2e6o"]
+
+[ext_resource type="Script" uid="uid://dmqmp2tbi4fj5" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_joystick_buttons_to_s2w.gd" id="1_ar6eo"]
+
+[resource]
+script = ExtResource("1_ar6eo")
+metadata/_custom_type_script = "uid://dmqmp2tbi4fj5"
