@@ -27,7 +27,7 @@ use_debug_print = true
 [node name="NodeNesToFourTargetIpv4Udp" parent="." unique_id=514972425 instance=ExtResource("4_6pu3g")]
 
 [connection signal="on_axis_changed" from="InputFilterByDevicesName" to="Nes16ParseDevicesMainJoystickToButtonId" method="push_in_axis"]
-[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
 [connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
-[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
 [connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
