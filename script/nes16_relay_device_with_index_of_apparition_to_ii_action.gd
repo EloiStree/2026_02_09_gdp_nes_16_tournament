@@ -1,10 +1,11 @@
+class_name Nes16RelayDeviceWithIndexOfApparitionToIndexInteger
+extends Node
 
-# Convert 16 NES Gamepad to index integer value with one target
-class_name Nes16ConvertDevicesButtonsToOneTargetIID extends Node
 
 @export var is_active=false
 @export var nes16_joystick_buttons_to_s2w:Nes16JoystickButtonsToS2W
 @export var use_debug_print:bool=false
+
 
 signal on_index_value_target_one(index:int, value:int)
 
@@ -13,6 +14,7 @@ func push_in_joystick_button_from_devices(godot_index:int , apparition_index:int
 		return
 
 	var index_value = nes16_joystick_buttons_to_s2w.get_s2w_value_from_joystick_button(button_id)
+	print("test: ", index_value)
 	if index_value != null:
 		if not value_pressed:
 			index_value +=1000

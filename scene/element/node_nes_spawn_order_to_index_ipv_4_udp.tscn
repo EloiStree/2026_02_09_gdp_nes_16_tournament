@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cp6fnchhaxn0f"]
+
+[ext_resource type="Script" uid="uid://v0ic661ttuoo" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_relay_device_with_index_of_apparition_to_ii_action.gd" id="1_kvg4v"]
+[ext_resource type="Script" uid="uid://dmqmp2tbi4fj5" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_joystick_buttons_to_s2w.gd" id="2_nq735"]
+[ext_resource type="Script" uid="uid://xvh1ii7efd5r" path="res://addons/2026_02_09_gdp_nes_16_tournament/script/nes16_send_udp_target.gd" id="3_1li4d"]
+
+[sub_resource type="Resource" id="Resource_p5byi"]
+script = ExtResource("2_nq735")
+metadata/_custom_type_script = "uid://dmqmp2tbi4fj5"
+
+[node name="NodeNesSpawnOrderToIndexIpv4Udp" type="Node" unique_id=496317862]
+script = ExtResource("1_kvg4v")
+nes16_joystick_buttons_to_s2w = SubResource("Resource_p5byi")
+use_debug_print = true
+
+[node name="Nes16SendUdptarget" type="Node" parent="." unique_id=672939763]
+script = ExtResource("3_1li4d")
+metadata/_custom_type_script = "uid://xvh1ii7efd5r"
+
+[connection signal="on_index_value_target_one" from="." to="Nes16SendUdptarget" method="push_ii_to_targets"]

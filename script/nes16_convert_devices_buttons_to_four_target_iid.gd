@@ -2,6 +2,7 @@ class_name Nes16ConvertDevicesButtonsToFourTargetIID
 extends Node
 
 
+@export var is_active=false
 @export var nes16_joystick_buttons_to_s2w:Nes16JoystickButtonsToS2W
 @export var use_debug_print:bool=false
 
@@ -15,11 +16,13 @@ signal on_index_value_target_four(index:int, value:int)
 
 
 func push_in_joystick_button_from_devices(godot_index:int , apparition_index:int, button_id:int, value_pressed:int):
+	if !is_active:
+		return
 	var index_value = nes16_joystick_buttons_to_s2w.get_s2w_value_from_joystick_button(button_id)
 	var new_index = apparition_index % 4
 	var pool_index = apparition_index / 4
 	if index_value != null:
-		if value_pressed:
+		if  not  value_pressed:
 			index_value +=1000
 		match new_index:
 			0:

@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://bccfp4a2ffnw7" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/input_filter_by_device_name.gd" id="2_bva8q"]
 [ext_resource type="PackedScene" uid="uid://skr8o2kjwqvb" path="res://addons/2026_02_09_gdp_nes_16_tournament/scene/element/node_nes_to_one_target_ipv4_udp.tscn" id="3_bva8q"]
 [ext_resource type="PackedScene" uid="uid://dr1pvl2t4qh3a" path="res://addons/2026_02_09_gdp_nes_16_tournament/scene/element/node_nes_to_four_target_ipv4_udp.tscn" id="4_6pu3g"]
+[ext_resource type="PackedScene" uid="uid://cp6fnchhaxn0f" path="res://addons/2026_02_09_gdp_nes_16_tournament/scene/element/node_nes_spawn_order_to_index_ipv_4_udp.tscn" id="6_bva8q"]
 
 [node name="DemoNes16JoysticksToRelay" type="Node" unique_id=942504134]
 
 [node name="ListenToDevicesAxisAndButtons" parent="." unique_id=1922160281 instance=ExtResource("2_7x45f")]
-use_print_debug = true
 
 [node name="InputFilterByDevicesName" type="Node" parent="." unique_id=550507228 node_paths=PackedStringArray("devices_manager")]
 script = ExtResource("2_bva8q")
@@ -26,8 +26,18 @@ use_debug_print = true
 
 [node name="NodeNesToFourTargetIpv4Udp" parent="." unique_id=514972425 instance=ExtResource("4_6pu3g")]
 
+[node name="NodeNesSpawnOrderToIndexIpv4Udp" parent="." unique_id=496317862 instance=ExtResource("6_bva8q")]
+is_active = true
+
+[node name="Nes16SendUdptarget" parent="NodeNesSpawnOrderToIndexIpv4Udp" index="0" unique_id=672939763]
+list_targets_ipv4 = Array[String](["127.0.0.1:3615", "192.168.178.1:3615", "127.0.0.1"])
+
 [connection signal="on_axis_changed" from="InputFilterByDevicesName" to="Nes16ParseDevicesMainJoystickToButtonId" method="push_in_axis"]
-[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
 [connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
-[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_button_changed" from="InputFilterByDevicesName" to="NodeNesSpawnOrderToIndexIpv4Udp" method="push_in_joystick_button_from_devices"]
 [connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToOneTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesToFourTargetIpv4Udp" method="push_in_joystick_button_from_devices"]
+[connection signal="on_parse_to_button_changed" from="Nes16ParseDevicesMainJoystickToButtonId" to="NodeNesSpawnOrderToIndexIpv4Udp" method="push_in_joystick_button_from_devices"]
+
+[editable path="NodeNesSpawnOrderToIndexIpv4Udp"]
